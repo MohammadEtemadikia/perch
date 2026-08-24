@@ -6,6 +6,15 @@ directories:
   output: dist
   buildResources: build
 
+# Auto-update feed: electron-updater reads latest.yml/latest-mac.yml from
+# this repo's GitHub Releases. Only takes effect when actually publishing
+# (`electron-builder --publish always`, or GH_TOKEN + a non-"never" publish
+# policy) — plain `npm run package:*` builds still work exactly as before.
+publish:
+  provider: github
+  owner: MohammadEtemadikia
+  repo: perch
+
 files:
   - electron/**/*
   - package.json

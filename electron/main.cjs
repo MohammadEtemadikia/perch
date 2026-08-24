@@ -14,6 +14,7 @@ const { execFile, spawnSync } = require("child_process");
 const net = require("net");
 const path = require("path");
 const fs = require("fs");
+const { autoUpdater } = require("electron-updater");
 
 const IS_WINDOWS = process.platform === "win32";
 const IS_MAC = process.platform === "darwin";
@@ -221,8 +222,71 @@ function buildMenu() {
         { role: "toggleDevTools" },
       ],
     },
+    {
+      label: "Help",
+      submenu: [{ label: "Check for Updates…", click: () => void checkForUpdatesManually() }],
+    },
   ];
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+}
+
+/* -------------------------------------------------------------------------- */
+/*  AUTO UPDATE (packaged builds only — checks Perch's GitHub Releases feed)  */
+/* -------------------------------------------------------------------------- */
+
+function setupAutoUpdater() {
+  if (!app.isPackaged) return;
+
+  autoUpdater.autoDownload = true;
+  autoUpdater.autoInstallOnAppQuit = true;
+
+  autoUpdater.on("update-downloaded", () => {
+    if (!mainWindow) return;
+    dialog
+      .showMessageBox(mainWindow, {
+        type: "info",
+        buttons: ["Restart now", "Later"],
+        defaultId: 0,
+        title: "Update ready",
+        message: "A new version of Perch has been downloaded.",
+        detail: "Restart now to finish installing it, or it will install automatically the next time you quit.",
+      })
+      .then(({ response }) => {
+        if (response === 0) autoUpdater.quitAndInstall();
+      });
+  });
+
+  // Unsigned macOS builds can't use Squirrel.Mac's update mechanism at all
+  // (it requires a real code signature) — that's a known, permanent
+  // limitation of this build, not a bug, so check failures are only logged,
+  // never shown to the user as an error.
+  autoUpdater.on("error", (error) => {
+    console.error("[updater]", error instanceof Error ? error.message : String(error));
+  });
+
+  void autoUpdater.checkForUpdates().catch((error) => {
+    console.error("[updater] check failed:", error instanceof Error ? error.message : String(error));
+  });
+}
+
+async function checkForUpdatesManually() {
+  if (!app.isPackaged) {
+    dialog.showMessageBox(mainWindow, { message: "Update checks only run in a packaged build." });
+    return;
+  }
+  try {
+    const result = await autoUpdater.checkForUpdates();
+    if (result?.updateInfo?.version === app.getVersion()) {
+      dialog.showMessageBox(mainWindow, { title: "No updates", message: "You're up to date.", detail: `Perch ${app.getVersion()}` });
+    }
+    // Otherwise an update was found — autoDownload + the update-downloaded listener above handle the rest.
+  } catch (error) {
+    dialog.showMessageBox(mainWindow, {
+      type: "error",
+      title: "Could not check for updates",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -329,6 +393,7 @@ if (!app.requestSingleInstanceLock()) {
       await repairPath();
       const url = await startServer();
       await mainWindow?.loadURL(url);
+      setupAutoUpdater();
     } catch (error) {
       dialog.showErrorBox("Perch could not start", error instanceof Error ? error.message : String(error));
       app.quit();
