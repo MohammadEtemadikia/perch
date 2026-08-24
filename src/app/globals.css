@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f7f9;
+  --bg-elevated: #ffffff;
+  --bg-inset: #eef0f3;
+  --border: #e2e5ea;
+  --border-strong: #cfd4dc;
+  --text: #14171c;
+  --text-muted: #5b6270;
+  --text-faint: #8991a0;
+  --accent: #3b6fe0;
+  --accent-fg: #ffffff;
+  --danger: #d0453c;
+  --warning: #b8791a;
+  --success: #1c8a5a;
+  --health-healthy: #1c8a5a;
+  --health-attention: #b8791a;
+  --health-broken: #d0453c;
+  --health-archived: #8991a0;
+  --health-unknown: #6b7280;
+  --shadow: 0 1px 2px rgba(20, 23, 28, 0.04), 0 1px 12px rgba(20, 23, 28, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0d10;
+    --bg-elevated: #14171c;
+    --bg-inset: #191d23;
+    --border: #262b33;
+    --border-strong: #343a44;
+    --text: #eceef1;
+    --text-muted: #9aa2af;
+    --text-faint: #6b7280;
+    --accent: #6a9bff;
+    --accent-fg: #0b0d10;
+    --danger: #f0665c;
+    --warning: #e0a940;
+    --success: #3fbf83;
+    --health-healthy: #3fbf83;
+    --health-attention: #e0a940;
+    --health-broken: #f0665c;
+    --health-archived: #6b7280;
+    --health-unknown: #8b93a1;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b0d10;
+  --bg-elevated: #14171c;
+  --bg-inset: #191d23;
+  --border: #262b33;
+  --border-strong: #343a44;
+  --text: #eceef1;
+  --text-muted: #9aa2af;
+  --text-faint: #6b7280;
+  --accent: #6a9bff;
+  --accent-fg: #0b0d10;
+  --danger: #f0665c;
+  --warning: #e0a940;
+  --success: #3fbf83;
+  --health-healthy: #3fbf83;
+  --health-attention: #e0a940;
+  --health-broken: #f0665c;
+  --health-archived: #6b7280;
+  --health-unknown: #8b93a1;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  border-color: var(--border);
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn-Variable.woff2") format("woff2-variations"), url("/fonts/Vazirmatn-Variable.woff2") format("woff2 supports variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[dir="rtl"] body {
+  font-family: "Vazirmatn", -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  color: inherit;
+}
+
+kbd {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}

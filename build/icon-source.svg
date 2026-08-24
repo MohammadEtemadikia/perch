@@ -1,0 +1,39 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#171c26"/>
+      <stop offset="100%" stop-color="#0a0c11"/>
+    </linearGradient>
+    <linearGradient id="bird" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffcf6b"/>
+      <stop offset="100%" stop-color="#f0a930"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- branch -->
+  <rect x="118" y="332" width="276" height="20" rx="10" fill="#3c4a60"/>
+
+  <!-- legs -->
+  <rect x="240" y="308" width="10" height="30" rx="5" fill="#c98a2e"/>
+  <rect x="278" y="304" width="10" height="34" rx="5" fill="#c98a2e"/>
+
+  <!-- tail -->
+  <path d="M322 262 L398 208 L336 292 Z" fill="url(#bird)"/>
+
+  <!-- body -->
+  <ellipse cx="264" cy="266" rx="76" ry="62" fill="url(#bird)"/>
+
+  <!-- head -->
+  <circle cx="204" cy="222" r="42" fill="url(#bird)"/>
+
+  <!-- beak -->
+  <path d="M166 214 L204 200 L204 236 Z" fill="#e2703a"/>
+
+  <!-- eye -->
+  <circle cx="196" cy="212" r="7" fill="#141821"/>
+
+  <!-- wing accent -->
+  <path d="M232 246 Q276 236 306 268 Q272 264 236 276 Z" fill="#c98a2e" opacity="0.55"/>
+</svg>

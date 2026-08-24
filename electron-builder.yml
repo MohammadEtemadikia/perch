@@ -1,0 +1,52 @@
+appId: com.perch.app
+productName: Perch
+copyright: Perch
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - electron/**/*
+  - package.json
+  - "!**/*.map"
+
+afterPack: ./scripts/after-pack.cjs
+
+extraResources:
+  - from: build/icon.png
+    to: icon.png
+
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Perch
+
+portable:
+  artifactName: "Perch-portable-${version}.exe"
+
+mac:
+  icon: build/icon.icns
+  category: public.app-category.developer-tools
+  target:
+    - target: dmg
+      arch: [arm64, x64]
+  # Unsigned build: without this, macOS quarantines the app on first open.
+  identity: null
+
+linux:
+  icon: build/icon.png
+  category: Development
+  target:
+    - AppImage

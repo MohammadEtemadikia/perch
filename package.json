@@ -1,0 +1,62 @@
+{
+  "name": "perch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Perch — a local-first project command center for developers managing many software projects.",
+  "main": "electron/main.cjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev -p 4100",
+    "build": "next build",
+    "start": "next start -p 4100",
+    "setup": "npm install --no-audit --no-fund && npm run db:seed && next build",
+    "lint": "next lint",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:reset": "node scripts/reset-db.mjs",
+    "generate-icons": "node scripts/generate-icons.mjs",
+    "clean:dist": "node scripts/clean-dist.mjs",
+    "rebuild:node": "npm rebuild better-sqlite3",
+    "rebuild:electron": "electron-rebuild -f -w better-sqlite3",
+    "build:app": "npm run rebuild:node && next build && npm run rebuild:electron && node scripts/prepare-server.mjs && npm run rebuild:node",
+    "app": "npm run build:app && electron .",
+    "package": "npm run clean:dist && npm run build:app && electron-builder --mac --win; npm run rebuild:node",
+    "package:mac": "npm run clean:dist && npm run build:app && electron-builder --mac; npm run rebuild:node",
+    "package:win": "npm run clean:dist && npm run build:app && electron-builder --win; npm run rebuild:node",
+    "package:linux": "npm run clean:dist && npm run build:app && electron-builder --linux; npm run rebuild:node"
+  },
+  "author": {
+    "name": "Mo",
+    "email": "Etemadikia@technologist.com"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "lucide-react": "^0.469.0",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "vazirmatn": "^33.0.3"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.7.1",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^3.0.2",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "allowScripts": {
+    "better-sqlite3@11.10.0": true,
+    "electron@33.4.11": true,
+    "esbuild@0.28.2": true,
+    "sharp@0.34.5": true,
+    "fsevents@2.3.3": true
+  }
+}
