@@ -1,8 +1,31 @@
-# Perch
+<p align="center">
+  <img src="build/icon-256.png" width="96" alt="Perch icon" />
+</p>
 
-A local-first **Project Command Center** for developers managing many software projects. Not a task tracker — a single place to see what you have, what's active, what's broken, and what needs attention across every project you own.
+<h1 align="center">Perch</h1>
+
+<p align="center">A local-first <strong>Project Command Center</strong> for developers managing many software projects.</p>
+
+Not a task tracker — a single place to see what you have, what's active, what's broken, and what needs attention across every project you own.
 
 Built as a desktop app (Electron + Next.js + SQLite) so it runs entirely on your machine, with real filesystem and git access, and no dependency on any cloud service.
+
+## Download
+
+Grab the latest build for your platform from the [Releases page](../../releases/latest) — macOS (Apple Silicon or Intel) and Windows (installer or portable) are available. No account, no cloud dependency, nothing phones home.
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Dashboard](screenshots/dashboard.png) | ![Projects](screenshots/projects.png) |
+| Dashboard | Projects |
+| ![Project detail](screenshots/project-detail.png) | ![Tasks](screenshots/tasks-kanban.png) |
+| Project detail | Per-project Kanban tasks |
+| ![System Map](screenshots/system-map.png) | ![Git status](screenshots/git-status.png) |
+| System Map | Read-only git status |
+| ![Settings](screenshots/settings.png) | ![Persian / RTL](screenshots/dashboard-farsi.png) |
+| Settings | Full English / Persian / Dutch UI, with RTL support |
 
 ## What it actually does
 
