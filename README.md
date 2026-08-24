@@ -20,12 +20,10 @@ Grab the latest build for your platform from the [Releases page](../../releases/
 |---|---|
 | ![Dashboard](screenshots/dashboard.png) | ![Projects](screenshots/projects.png) |
 | Dashboard | Projects |
-| ![Project detail](screenshots/project-detail.png) | ![Tasks](screenshots/tasks-kanban.png) |
-| Project detail | Per-project Kanban tasks |
-| ![System Map](screenshots/system-map.png) | ![Git status](screenshots/git-status.png) |
-| System Map | Read-only git status |
-| ![Settings](screenshots/settings.png) | ![Persian / RTL](screenshots/dashboard-farsi.png) |
-| Settings | Full English / Persian / Dutch UI, with RTL support |
+| ![Tasks](screenshots/tasks-kanban.png) | ![System Map](screenshots/system-map.png) |
+| Per-project Kanban tasks | System Map |
+| ![Git status](screenshots/git-status.png) | ![Persian / RTL](screenshots/dashboard-farsi.png) |
+| Read-only git status | Full English / Persian / Dutch UI, with RTL support |
 
 ## What it actually does
 
