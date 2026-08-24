@@ -78,6 +78,7 @@ const en: Record<string, string> = {
   "projects.colName": "Name",
   "projects.colStatus": "Status",
   "projects.colHealth": "Health",
+  "projects.colPriority": "Priority",
   "projects.colType": "Type",
   "projects.colTasks": "Tasks",
   "projects.colBugs": "Bugs",
@@ -115,6 +116,7 @@ const en: Record<string, string> = {
   "detail.archivedToast": "Project archived.",
   "detail.deletedToast": "Project deleted.",
   "detail.deleteError": "Could not delete this project.",
+  "detail.incompleteTooltip": "This section is missing or looks incomplete",
 
   "tasks.addPlaceholder": "Add a task and press Enter…",
   "tasks.labelsPlaceholder": "Labels (comma separated)",
@@ -265,6 +267,7 @@ const fa: Record<string, string> = {
   "projects.colName": "نام",
   "projects.colStatus": "وضعیت",
   "projects.colHealth": "سلامت",
+  "projects.colPriority": "اولویت",
   "projects.colType": "نوع",
   "projects.colTasks": "تسک‌ها",
   "projects.colBugs": "باگ‌ها",
@@ -302,6 +305,7 @@ const fa: Record<string, string> = {
   "detail.archivedToast": "پروژه بایگانی شد.",
   "detail.deletedToast": "پروژه حذف شد.",
   "detail.deleteError": "حذف این پروژه ممکن نشد.",
+  "detail.incompleteTooltip": "این بخش خالی یا ناقص به‌نظر می‌رسد",
 
   "tasks.addPlaceholder": "یک تسک اضافه کن و Enter بزن…",
   "tasks.labelsPlaceholder": "برچسب‌ها (با کاما جدا کن)",
@@ -452,6 +456,7 @@ const nl: Record<string, string> = {
   "projects.colName": "Naam",
   "projects.colStatus": "Status",
   "projects.colHealth": "Gezondheid",
+  "projects.colPriority": "Prioriteit",
   "projects.colType": "Type",
   "projects.colTasks": "Taken",
   "projects.colBugs": "Bugs",
@@ -489,6 +494,7 @@ const nl: Record<string, string> = {
   "detail.archivedToast": "Project gearchiveerd.",
   "detail.deletedToast": "Project verwijderd.",
   "detail.deleteError": "Kon dit project niet verwijderen.",
+  "detail.incompleteTooltip": "Dit onderdeel ontbreekt of lijkt onvolledig",
 
   "tasks.addPlaceholder": "Voeg een taak toe en druk op Enter…",
   "tasks.labelsPlaceholder": "Labels (komma-gescheiden)",

@@ -8,7 +8,7 @@ import { NewProjectModal } from "./NewProjectModal";
 import { ImportProjectModal } from "./ImportProjectModal";
 import { Plus, FolderInput, Search, LayoutGrid, List } from "lucide-react";
 import Link from "next/link";
-import { HealthBadge, StatusBadge } from "./badges";
+import { HealthBadge, StatusBadge, PriorityBadge } from "./badges";
 import { statusLabel, typeLabel } from "@/lib/i18n/labels";
 import { useT } from "@/lib/i18n/provider";
 import { intlLocale } from "@/lib/i18n/dictionaries";
@@ -150,6 +150,7 @@ export function ProjectsBoard({ projects }: { projects: ProjectWithCounts[] }) {
                 <th className="px-3 py-2 font-medium">{t("projects.colName")}</th>
                 <th className="px-3 py-2 font-medium">{t("projects.colStatus")}</th>
                 <th className="px-3 py-2 font-medium">{t("projects.colHealth")}</th>
+                <th className="px-3 py-2 font-medium">{t("projects.colPriority")}</th>
                 <th className="px-3 py-2 font-medium">{t("projects.colType")}</th>
                 <th className="px-3 py-2 font-medium">{t("projects.colTasks")}</th>
                 <th className="px-3 py-2 font-medium">{t("projects.colBugs")}</th>
@@ -169,6 +170,9 @@ export function ProjectsBoard({ projects }: { projects: ProjectWithCounts[] }) {
                   </td>
                   <td className="px-3 py-2">
                     <HealthBadge health={p.health} locale={locale} />
+                  </td>
+                  <td className="px-3 py-2">
+                    <PriorityBadge priority={p.priority} locale={locale} />
                   </td>
                   <td className="px-3 py-2" style={{ color: "var(--text-muted)" }}>
                     {typeLabel(p.type, locale)}

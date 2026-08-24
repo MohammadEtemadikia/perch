@@ -78,6 +78,15 @@ export function ProjectDetailClient({
   const scanReport: ScanReport | null = scan ? JSON.parse(scan.report_json) : null;
   const runCommand = scanReport?.scripts?.dev ? "npm run dev" : scanReport?.scripts?.start ? "npm start" : null;
 
+  const INCOMPLETE: Partial<Record<Tab, boolean>> = {
+    Overview: !project.description && !project.purpose,
+    Architecture: technologies.length === 0,
+    Files: files.length === 0,
+    "Claude Knowledge": !knowledge || !(knowledge.architecture_notes || knowledge.dev_rules || knowledge.known_limitations || knowledge.important_decisions),
+    Documentation: (knowledge?.documentation_score ?? 0) < 50,
+    Environment: envVars.length === 0,
+  };
+
   async function rescan() {
     setScanning(true);
     try {
@@ -172,10 +181,12 @@ export function ProjectDetailClient({
           <button
             key={key}
             onClick={() => setTab(key)}
-            className="whitespace-nowrap border-b-2 px-2.5 py-2.5 text-[12.5px] font-medium"
+            title={INCOMPLETE[key] ? t("detail.incompleteTooltip") : undefined}
+            className="flex items-center whitespace-nowrap border-b-2 px-2.5 py-2.5 text-[12.5px] font-medium"
             style={{ borderColor: tab === key ? "var(--accent)" : "transparent", color: tab === key ? "var(--text)" : "var(--text-muted)" }}
           >
             {t(labelKey)}
+            {INCOMPLETE[key] && <span className="ms-1.5 h-[6px] w-[6px] shrink-0 rounded-full" style={{ background: "var(--warning)" }} />}
             {key === "Tasks" && tasks.length > 0 && <sup className="ms-1" style={{ color: "var(--text-faint)" }}>{tasks.filter((x) => x.status !== "done").length}</sup>}
             {key === "Bugs" && bugs.length > 0 && <sup className="ms-1" style={{ color: "var(--text-faint)" }}>{bugs.filter((x) => x.status === "open").length}</sup>}
           </button>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ProjectWithCounts } from "@/lib/types";
 import { typeLabel } from "@/lib/i18n/labels";
 import { useT } from "@/lib/i18n/provider";
-import { HealthBadge, StatusBadge, Tag, healthColor } from "./badges";
+import { HealthBadge, StatusBadge, PriorityBadge, Tag, healthColor } from "./badges";
 
 export function ProjectCard({ project }: { project: ProjectWithCounts }) {
   const { t, locale } = useT();
@@ -45,7 +45,10 @@ export function ProjectCard({ project }: { project: ProjectWithCounts }) {
       )}
 
       <div className="mt-3.5 flex items-center justify-between border-t pt-2.5 text-[11.5px]" style={{ borderColor: "var(--border)", color: "var(--text-faint)" }}>
-        <StatusBadge status={project.status} locale={locale} />
+        <div className="flex items-center gap-2">
+          <StatusBadge status={project.status} locale={locale} />
+          <PriorityBadge priority={project.priority} locale={locale} />
+        </div>
         <div className="flex items-center gap-3">
           <span>
             {project.open_tasks} {t("projects.tasksCount")}
